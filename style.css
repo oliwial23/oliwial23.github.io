@@ -372,3 +372,17 @@ body {
     visibility: visible;
     pointer-events: auto; /* Re-enable pointer events for the entire overlay on hover */
 }
+
+
+.profile-photo {
+    flex-shrink: 0;
+    width: 100px; /* CHANGED: Reduced width */
+    height: 140px; /* CHANGED: Reduced height */
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid #446CB3;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
