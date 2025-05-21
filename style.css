@@ -376,11 +376,11 @@ body {
 
 .profile-photo {
     flex-shrink: 0;
-    width: 100px; /* CHANGED: Reduced width */
-    height: 140px; /* CHANGED: Reduced height */
+    width: 150px; /* CHANGED: Reduced width */
+    height: 300px; /* CHANGED: Reduced height */
     overflow: hidden;
-    border-radius: 50%;
-    border: 3px solid #446CB3;
+    /* border-radius: 50%; */
+    border: 0px solid #446CB3;
     background-color: #eee;
     display: flex;
     justify-content: center;
