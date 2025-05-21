@@ -283,3 +283,44 @@ body {
         font-size: 1.8em;
     }
 }
+
+/* About Section Grid Layout */
+.about-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Creates 3 columns: left image (1 part), bio-text (2 parts), right image (1 part) */
+    gap: 40px; /* Space between the columns */
+    align-items: center; /* Vertically centers the items within the grid row */
+    text-align: left; /* Ensures text inside grid items is left-aligned by default */
+}
+
+.about-grid-item {
+    display: flex;
+    justify-content: center; /* Centers the image horizontally within its column */
+    align-items: center; /* Centers the image vertically within its column */
+}
+
+.about-grid-item img {
+    width: 150px; /* Adjust the width of the images as needed */
+    height: 150px; /* Adjust the height of the images as needed */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 50%; /* Makes the images circular */
+    border: 3px solid #446CB3; /* Adds a border matching your theme */
+}
+
+/* Responsive adjustments for the new grid layout */
+@media (max-width: 768px) {
+    .about-grid-container {
+        grid-template-columns: 1fr; /* On smaller screens, stack items vertically */
+        text-align: center; /* Center content when stacked */
+    }
+    .about-grid-item {
+        margin-bottom: 20px; /* Add space between stacked items */
+    }
+    .about-grid-item:last-child {
+        margin-bottom: 0;
+    }
+    /* Ensure bio-text aligns correctly when stacked */
+    .bio-text {
+        text-align: center;
+    }
+}
