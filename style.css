@@ -113,36 +113,32 @@ body {
     content: '';
     display: block;
     width: 60px;
-    height: 5px; /* Changed to 5px for a thicker line */
+    height: 5px;
     background-color: #446CB3;
     margin: 15px auto 0;
 }
 
 /* About Section */
-.about-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px; /* Space between photo and text */
+.about-grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Images take their content width, text takes remaining space */
+    gap: 40px; /* Space between columns */
+    align-items: center; /* Vertically center items in the grid row */
+    text-align: left; /* Reset text alignment for content inside grid items */
 }
 
-.profile-photo {
-    flex-shrink: 0; /* Prevent photo from shrinking */
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 3px solid #446CB3;
-    background-color: #eee; /* Placeholder background */
+.about-grid-item {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centers the image horizontally within its column */
+    align-items: center; /* Centers the image vertically within its column */
 }
 
-.profile-photo img {
-    width: 100%;
-    height: 100%;
+.about-grid-item img {
+    width: 150px; /* Adjust the width of the images as needed */
+    height: 150px; /* Adjust the height of the images as needed */
     object-fit: cover;
-    display: block;
+    border-radius: 50%; /* Makes the images circular */
+    border: 3px solid #446CB3;
 }
 
 .bio-text {
@@ -161,40 +157,69 @@ body {
     gap: 30px;
 }
 
-/* .publication-item {
-    border-left: 4px solid #446CB3;
-    padding-left: 20px; */
-/* } */
+.publication-item {
+    display: flex;
+    align-items: stretch; /* Make items stretch to the height of the tallest item (the text content) */
+    gap: 15px; /* Space between the bar, image, and text details */
+    margin-bottom: 20px;
+}
 
-.publication-item h3 {
+.publication-bar {
+    width: 4px; /* Sets the thickness of the bar */
+    background-color: #446CB3; /* Your blue color */
+    flex-shrink: 0; /* Prevents the bar from shrinking */
+}
+
+.publication-image {
+    flex-shrink: 0;
+    width: 200px; /* Increased width of the image container */
+}
+
+.publication-image img {
+    width: 100%;
+    height: 100%; /* Makes the image fill the height of its container */
+    object-fit: cover;
+    display: block;
+}
+
+.publication-details {
+    flex-grow: 1; /* Allow the text details to take up the remaining space */
+}
+
+.publication-details h3 {
     font-family: 'Merriweather', serif;
     font-size: 1.3em;
+    margin-top: 0; /* Remove top margin if added by default, for better alignment */
     margin-bottom: 5px;
 }
 
-.publication-item h3 a {
+.publication-details h3 a {
     color: #446CB3;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.publication-item h3 a:hover {
+.publication-details h3 a:hover {
     color: #2c3e50;
 }
 
-.publication-item .authors {
+.publication-details .authors {
     font-size: 0.95em;
     color: #555;
     margin-bottom: 5px;
 }
 
-.publication-item .venue {
+.publication-details .venue {
     font-style: italic;
     font-size: 0.9em;
     color: #777;
 }
 
 /* CV Section */
+.center-button-container {
+    text-align: center;
+}
+
 .button {
     display: inline-block;
     background-color: #446CB3;
@@ -255,14 +280,34 @@ body {
         margin: 0 10px;
     }
 
-    .about-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .about-grid-container {
+        grid-template-columns: 1fr; /* On smaller screens, stack items vertically */
+        text-align: center; /* Center content when stacked */
+    }
+    .about-grid-item {
+        margin-bottom: 20px; /* Add space between stacked items */
+    }
+    .about-grid-item:last-child {
+        margin-bottom: 0;
+    }
+    .bio-text {
+        text-align: center; /* Ensure bio-text aligns correctly when stacked */
     }
 
-    .profile-photo {
-        margin-bottom: 20px;
+    .publication-item {
+        flex-direction: column; /* Stack image and text vertically */
+        align-items: flex-start; /* Align stacked items to the left */
+        padding-left: 10px; /* Adjust padding for smaller screens */
+    }
+    .publication-bar {
+        width: 100%; /* Make bar full width when stacked */
+        height: 4px; /* Give it a small height */
+        margin-bottom: 10px; /* Space below bar */
+    }
+    .publication-image {
+        width: 80px; /* Adjust width for stacked image */
+        height: auto; /* Let height adjust naturally */
+        margin-bottom: 10px; /* Space between stacked image and text */
     }
 }
 
@@ -282,102 +327,4 @@ body {
     .section-padded h2 {
         font-size: 1.8em;
     }
-}
-
-
-.about-grid-item {
-    display: flex;
-    justify-content: center; /* Centers the image horizontally within its column */
-    align-items: center; /* Centers the image vertically within its column */
-}
-
-
-/* About Section Grid Layout */
-.about-grid-container {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* Changed: Images take their content width, text takes remaining space */
-    gap: 40px; /* Keep the gap to separate elements. You can increase this (e.g., 60px) if you want images even further out. */
-    align-items: center; /* Vertically center items in the grid row */
-    text-align: left; /* Reset text alignment for content inside grid items */
-}
-
-/* Ensure the image sizes are as you desire - currently set to 150px */
-.about-grid-item img {
-    width: 150px; /* Adjust the width of the images as needed */
-    height: 150px; /* Adjust the height of the images as needed */
-    object-fit: cover;
-    border-radius: 50%; /* Makes the images circular */
-    border: 3px solid #446CB3;
-}
-
-/* Responsive adjustments for the new grid layout */
-@media (max-width: 768px) {
-    .about-grid-container {
-        grid-template-columns: 1fr; /* On smaller screens, stack items vertically */
-        text-align: center; /* Center content when stacked */
-    }
-    .about-grid-item {
-        margin-bottom: 20px; /* Add space between stacked items */
-    }
-    .about-grid-item:last-child {
-        margin-bottom: 0;
-    }
-    /* Ensure bio-text aligns correctly when stacked */
-    .bio-text {
-        text-align: center;
-    }
-}
-
-
-/* Style for the text details (already mostly defined, but ensure compatibility) */
-.publication-details {
-    flex-grow: 1; /* Allow the text details to take up the remaining space */
-}
-
-/* Optional: Adjust spacing for titles within the details */
-.publication-details h3 {
-    margin-top: 0; /* Remove top margin if added by default, for better alignment */
-    margin-bottom: 5px;
-}
-
-
-/* Publications Section - Item Layout */
-.publication-item {
-    /* REMOVE these two lines from here: */
-    /* border-left: 4px solid #446CB3; */
-    /* padding-left: 20px; */
-
-    display: flex;
-    align-items: stretch; /* Ensures all direct children stretch to the tallest child's height */
-    gap: 15px; /* Adjust spacing between the bar, image, and text content */
-    margin-bottom: 20px;
-}
-
-/* NEW: Styles for the blue vertical bar */
-.publication-bar {
-    width: 4px; /* Sets the thickness of the bar */
-    background-color: #446CB3; /* Your blue color */
-    flex-shrink: 0; /* Prevents the bar from shrinking */
-    /* Its height will automatically match the height of the publication-item due to align-items: stretch on the parent */
-}
-
-/* The rest of the styles for .publication-image and .publication-details remain largely the same,
-   but ensure they are compatible with the new flex layout: */
-
-.publication-image {
-    flex-shrink: 0;
-    width: 60px; /* Adjust width of the image container as needed */
-}
-
-.publication-image img {
-    width: 100%;
-    height: 100%; /* Makes the image fill the height of its container */
-    object-fit: cover;
-    display: block;
-}
-
-.publication-details {
-    flex-grow: 1;
-    /* You might want to remove or adjust any existing padding-left here
-       if you added it in previous steps, as 'gap' handles spacing. */
 }
