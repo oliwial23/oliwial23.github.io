@@ -366,16 +366,16 @@ body {
 }
 
 .profile-photo {
-    flex-shrink: 0;
-    width: 150px; /* CHANGED: Reduced width */
-    height: 300px; /* CHANGED: Reduced height */
+    width: 220px; /* Larger width */
+    height: 220px; /* Make it a square for a clean circle */
+    margin: 0 auto 30px auto; /* Center the image block */
     overflow: hidden;
-    /* border-radius: 50%; */
-    border: 0px solid #446CB3;
-    background-color: #eee;
+    border-radius: 50%; /* Circular crop */
+    background-color: transparent; /* Remove background color */
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none; /* Remove border */
 }
 
 .profile-photo img {
