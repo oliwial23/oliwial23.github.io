@@ -134,8 +134,8 @@ body {
 }
 
 .about-grid-item img {
-    width: 150px; /* Adjust the width of the images as needed */
-    height: 150px; /* Adjust the height of the images as needed */
+    width: 15px; /* Adjust the width of the images as needed */
+    height: 15px; /* Adjust the height of the images as needed */
     object-fit: cover;
     border-radius: 50%; /* Makes the images circular */
     border: 3px solid #446CB3;
