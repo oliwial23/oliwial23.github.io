@@ -324,3 +324,54 @@ body {
         text-align: center;
     }
 }
+
+/* Publications Section - Item Layout */
+.publication-item {
+    border-left: 4px solid #446CB3; /* Your blue bar */
+    padding-left: 20px;
+    display: flex; /* Enable flexbox to place image and text side-by-side */
+    align-items: stretch; /* Make items stretch to the height of the tallest item (the text content) */
+    gap: 15px; /* Space between the image and the publication details */
+    margin-bottom: 20px; /* Add some vertical space between publication entries */
+}
+
+/* Container for the image */
+.publication-image {
+    flex-shrink: 0; /* Prevent the image container from shrinking */
+    width: 60px; /* Set a fixed width for your rectangular image container */
+    /* The height will be determined by the content of .publication-details */
+}
+
+/* The actual image */
+.publication-image img {
+    width: 100%; /* Make the image fill the width of its container */
+    height: 100%; /* Make the image fill the height of its container */
+    object-fit: cover; /* This will crop the image to fit the container while maintaining aspect ratio */
+    display: block; /* Removes any extra space below the image */
+    /* No border-radius here to keep it rectangular */
+}
+
+/* Style for the text details (already mostly defined, but ensure compatibility) */
+.publication-details {
+    flex-grow: 1; /* Allow the text details to take up the remaining space */
+}
+
+/* Optional: Adjust spacing for titles within the details */
+.publication-details h3 {
+    margin-top: 0; /* Remove top margin if added by default, for better alignment */
+    margin-bottom: 5px;
+}
+
+/* Responsive adjustment for very small screens if needed */
+@media (max-width: 480px) {
+    .publication-item {
+        flex-direction: column; /* Stack image and text vertically */
+        align-items: flex-start; /* Align stacked items to the left */
+        padding-left: 10px; /* Adjust padding for smaller screens */
+    }
+    .publication-image {
+        width: 80px; /* Adjust width for stacked image */
+        height: auto; /* Let height adjust naturally */
+        margin-bottom: 10px; /* Space between stacked image and text */
+    }
+}
