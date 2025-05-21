@@ -305,7 +305,7 @@ body {
         margin-bottom: 10px; /* Space below bar */
     }
     .publication-image {
-        width: 80px; /* Adjust width for stacked image */
+        width: 240px; /* Adjust width for stacked image */
         height: auto; /* Let height adjust naturally */
         margin-bottom: 10px; /* Space between stacked image and text */
     }
