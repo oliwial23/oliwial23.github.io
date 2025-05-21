@@ -119,7 +119,6 @@ body {
 }
 
 /* About Section */
-/* This rule is for the two-image grid layout, if you use that HTML structure */
 .about-grid-container {
     display: grid;
     grid-template-columns: auto 1fr auto; /* Images take their content width, text takes remaining space */
@@ -128,7 +127,6 @@ body {
     text-align: left; /* Reset text alignment for content inside grid items */
 }
 
-/* This rule applies to images inside .about-grid-item (for the two-image grid layout) */
 .about-grid-item {
     display: flex;
     justify-content: center; /* Centers the image horizontally within its column */
@@ -136,32 +134,11 @@ body {
 }
 
 .about-grid-item img {
-    width: 150px; /* Adjust the width of the images as needed */
-    height: 150px; /* Adjust the height of the images as needed */
+    width: 15px; /* Adjust the width of the images as needed */
+    height: 15px; /* Adjust the height of the images as needed */
     object-fit: cover;
     border-radius: 50%; /* Makes the images circular */
     border: 3px solid #446CB3;
-}
-
-/* This rule applies to the .profile-photo class which your current HTML is using */
-.profile-photo {
-    flex-shrink: 0;
-    width: 100px; /* Profile image size reduced to 100px */
-    height: 100px; /* Profile image size reduced to 100px */
-    overflow: hidden;
-    border-radius: 50%;
-    border: 3px solid #446CB3;
-    background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
 }
 
 .bio-text {
@@ -195,21 +172,18 @@ body {
 
 .publication-image {
     flex-shrink: 0;
-    width: 280px; /* Increased width of the image container */
+    width: 200px; /* Increased width of the image container */
 }
 
 .publication-image img {
     width: 100%;
-    height: auto; /* Makes the image fill the height of its container */
+    height: 100%; /* Makes the image fill the height of its container */
     object-fit: cover;
     display: block;
 }
 
 .publication-details {
     flex-grow: 1; /* Allow the text details to take up the remaining space */
-    display: flex; /* Make it a flex container */
-    flex-direction: column; /* Arrange its content (h3, p) in a column */
-    justify-content: center; /* Vertically center the content within this column */
 }
 
 .publication-details h3 {
@@ -316,17 +290,9 @@ body {
     .about-grid-item:last-child {
         margin-bottom: 0;
     }
-    /* Ensure bio-text aligns correctly when stacked */
     .bio-text {
-        text-align: center;
+        text-align: center; /* Ensure bio-text aligns correctly when stacked */
     }
-
-    .profile-photo {
-        width: 100px; /* Ensure responsive size also applies to profile-photo if it's used */
-        height: 100px;
-        margin-bottom: 20px; /* Add space below stacked photo */
-    }
-
 
     .publication-item {
         flex-direction: column; /* Stack image and text vertically */
@@ -340,7 +306,7 @@ body {
     }
     .publication-image {
         width: 180px; /* Adjust width for stacked image */
-        height: auto; /* Let height adjust naturally */
+        height: 80px; /* Let height adjust naturally */
         margin-bottom: 10px; /* Space between stacked image and text */
     }
 }
