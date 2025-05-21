@@ -203,6 +203,12 @@ body {
     color: #777;
 }
 
+.publication-details .date {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #777;
+}
+
 /* CV Section */
 .center-button-container {
     text-align: center;
