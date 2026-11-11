@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oliwia Kempinski - Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+/* --- base.css --- */
+/* Shared base for all minimal-academic styles. Colors come from palette vars. */
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --bg:#fff; --ink:#1a1a1a; --muted:#6b6b6b; --line:#e6e6e6; --accent:#1d4ed8; --label:#6b6b6b; }
+body { background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); }
+a[style] { color:var(--accent) !important; }
+
+.site-header h1 a { color:var(--ink); text-decoration:none; }
+.main-nav ul, .social-links { list-style:none; }
+.main-nav a { color:var(--muted); text-decoration:none; }
+.main-nav a:hover { color:var(--accent); }
+
+.profile-photo { overflow:hidden; flex-shrink:0; }
+.profile-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.tennis-gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0 8px; }
+.tennis-gallery img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+
+.publication-list { display:block; }
+.publication-bar, .publication-image { display:none; }
+.publication-item { padding:10px 0; }
+.publication-details p { margin:0; color:var(--muted); }
+.publication-details .authors strong { color:var(--ink); }
+.publication-details .venue { font-style:italic; }
+.publication-details h3 a { color:var(--ink); text-decoration:none; }
+.publication-details h3 a[href] { color:var(--accent); }
+.publication-details h3 a[href]:hover { text-decoration:underline; }
+
+.social-links { display:flex; gap:20px; flex-wrap:wrap; }
+.social-links a { text-decoration:none; }
+.social-links a:hover { text-decoration:underline; }
+
+/* --- s-sidebar.css --- */
+/* STYLE — Sidebar: name + nav pinned in a left column, content scrolls on the right. */
+
+body { font-family:'Newsreader', Georgia, serif; font-size:18px; line-height:1.65; }
+.container { max-width:none; padding:0 48px 0 40px; }
+
+.site-header { position:fixed; top:0; left:0; bottom:0; width:260px; padding:56px 0 0 40px; border-right:1px solid var(--line); }
+.site-header .container { padding:0; }
+.brand { display:flex; align-items:center; gap:14px; margin-bottom:32px; padding-right:20px; }
+.brand .profile-photo { width:72px; height:72px; border-radius:50%; }
+.site-header h1 { font-size:1.4em; font-weight:500; line-height:1.15; }
+.main-nav ul { display:flex; flex-direction:column; gap:8px; }
+.main-nav a { font-family:'Inter', sans-serif; font-size:0.85em; }
+.main-nav a::before { content:''; display:inline-block; width:0; height:1px; background:var(--accent); vertical-align:middle; margin-right:0; transition:all .2s; }
+.main-nav a:hover::before { width:14px; margin-right:8px; }
+
+main, .site-footer { margin-left:260px; }
+.section-padded { padding:28px 0 0; }
+.section-padded:first-child { padding-top:56px; }
+.section-padded h2 { font-size:1.35em; font-weight:500; color:var(--label); margin-bottom:12px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+.section-padded p { margin-bottom:14px; }
+
+.about-content { display:block; }
+
+.publication-year { font-family:'Inter', sans-serif; font-size:0.78em; font-weight:600; letter-spacing:.08em; color:var(--muted); margin:14px 0 0; }
+.publication-year:first-child { margin-top:0; }
+.publication-item { padding:3px 0; }
+.publication-details { line-height:1.35; }
+.publication-details h3 { font-size:1.02em; font-weight:500; line-height:1.35; }
+.section-padded .publication-details p { font-size:0.9em; margin:0; }
+.publication-details .date { display:none; }
+.publication-details .authors strong { font-weight:inherit; color:inherit; }
+.publication-item { display:grid; grid-template-columns:104px 1fr auto; column-gap:18px; align-items:start; }
+.venue-badge { font-family:'Inter', sans-serif; font-size:0.66em; font-weight:600; letter-spacing:.02em; text-align:center; white-space:nowrap;
+  color:var(--accent); background:var(--side); border:1px solid var(--line); border-radius:4px; padding:3px 6px; margin-top:4px; }
+.pub-links { display:flex; gap:6px; margin-top:3px; }
+.pub-btn { font-family:'Inter', sans-serif; font-size:0.68em; font-weight:500; color:var(--accent); text-decoration:none;
+  border:1px solid var(--accent); border-radius:4px; padding:2px 9px; transition:background .15s, color .15s; }
+.pub-btn:hover { background:var(--accent); color:var(--bg); }
+
+.bio-text { display:flow-root; }
+.projects-title { font-family:'Inter', sans-serif; font-size:0.78em; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:4px 0 8px; }
+.projects { list-style:none; margin:0 0 16px; }
+.projects li { margin-bottom:10px; padding-left:14px; border-left:2px solid var(--line); }
+.project-name { font-weight:600; color:var(--accent); }
+.wip-tag { font-family:'Inter', sans-serif; font-size:0.62em; font-weight:500; letter-spacing:.03em; text-transform:uppercase; color:var(--muted);
+  border:1px dashed var(--muted); border-radius:4px; padding:1px 6px; vertical-align:2px; margin-left:2px; white-space:nowrap; }
+.placeholder { background:#fff3b0; color:#6b5800; padding:0 4px; border-radius:3px; font-size:0.9em; }
+.about-grid { display:grid; grid-template-columns:minmax(0,1fr) 170px; column-gap:32px; }
+.gallery-col { position:relative; }
+.gallery-col .tennis-gallery { position:absolute; inset:4px 0 14px 0; display:flex; flex-direction:column; gap:8px; margin:0; }
+.gallery-col .tennis-gallery img { flex:1 1 0; min-height:0; width:100%; height:auto; aspect-ratio:auto; object-fit:cover; object-position:center 30%; }
+.tennis-gallery img { position:relative; border-radius:3px; transition:transform .25s ease, box-shadow .25s ease; }
+.tennis-gallery img:hover { transform:scale(1.04); z-index:2; box-shadow:0 4px 12px rgba(0,0,0,.15); }
+
+.button { font-family:'Inter', sans-serif; font-size:0.85em; color:var(--accent); }
+.social-links { gap:18px; margin-top:4px; }
+.social-links a { color:var(--muted); display:inline-flex; transition:color .2s; }
+.social-links a:hover { color:var(--accent); text-decoration:none; }
+.social-links svg { width:22px; height:22px; }
+.site-footer { padding:32px 0; font-family:'Inter', sans-serif; font-size:0.75em; color:var(--muted); }
+
+@media (max-width:860px) {
+  .site-header { position:static; width:auto; padding:32px 24px 20px; border-right:0; border-bottom:1px solid var(--line); }
+  .brand { margin-bottom:14px; }
+  .main-nav ul { flex-direction:row; flex-wrap:wrap; gap:16px; }
+  main, .site-footer { margin-left:0; }
+  .container { padding:0 24px; }
+  .about-grid { grid-template-columns:1fr; }
+  .gallery-col .tennis-gallery { position:static; display:grid; grid-template-columns:repeat(3, 1fr); margin:0 0 16px; }
+  .gallery-col .tennis-gallery img { aspect-ratio:4/3; }
+  .publication-item { grid-template-columns:1fr; row-gap:4px; }
+  .venue-badge { justify-self:start; }
+}
+
+/* --- sb-tint.css --- */
+/* SIDEBAR — Tinted: sidebar filled with a soft tint of the palette. */
+.site-header { background:var(--side); border-right:0; }
+
+/* --- p-white-teal.css --- */
+:root { --bg:#ffffff; --side:#eff7f6; --ink:#18201f; --muted:#66716f; --line:#e2e9e8; --accent:#0f766e; --label:#0f766e; }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="../ball.png" type="image/png">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="brand">
+                <div class="profile-photo"><img src="../pp.png" alt="Oliwia Kempinski"></div>
+                <h1><a href="#home">Oliwia Kempinski</a></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                                        <li><a href="#publications">Publications</a></li>
+                    <li><a href="#cv">CV</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- <section id="home" class="hero">
+            <div class="container">
+                <h2>Welcome</h2>
+                <p>Ph.D. Student in Computer Science at University of Maryland</p>
+                <p>My research focuses on Programming Languages, Cryptography, and Formal Methods.</p>
+            </div>
+        </section> -->
+
+        <!-- <section id="home" class="section-padded">
+             <div class="container">
+                <h2>Welcome</h2>
+                <p>Ph.D. Student in Computer Science at University of Maryland</p>
+                <p>My research focuses on Programming Languages, Cryptography, and Formal Methods.</p>
+            </div>
+        </section> -->
+
+        <section id="about" class="section-padded">
+            <div class="container about-content">
+                <div class="bio-text">
+                    <h2>About Me</h2>
+                    <div class="about-grid">
+                        <div class="about-main">
+                    <p>I am a third-year PhD student in Computer Science at the University of Maryland. My research, guided by my advisors <a href="https://lemonidas.github.io" style="color:#0066cc;">Leo Lampropoulos</a> and <a href="https://www.cs.umd.edu/~imiers/" style="color:#0066cc;">Ian Miers</a>, explores Programming Languages and Cryptography, with a focus on using formal methods and zero-knowledge proofs to verify private systems without exposing sensitive details.</p>
+                    <p>As an undergrad at Seton Hall University, I worked with <a href="https://scholar.google.com/scholar?q=%22Marco+T.+Moraz%C3%A1n%22" target="_blank">Marco Morazán</a> on Automata Theory, extending domain-specific languages with tools to better understand nondeterminism.</p>
+                    <p>I played Division I tennis for Seton Hall University and later for the University of Maryland. Reach out if you'd like to play!</p>
+                    <h3 class="projects-title">Current PhD projects</h3>
+                    <ul class="projects">
+                        <li><span class="project-name">Cryptographic Personas</span> — Anonymous, but accountable. Personas lets people in encrypted messengers like Signal use pseudonyms that can still be held responsible for bad behavior, without anyone ever unmasking who&rsquo;s behind them. Think masquerade ball where rude guests can be shown the door, mask firmly on.</li>
+                        <li><span class="project-name">Zerouette</span> — Zero-knowledge, meet choreography. A language for writing zero-knowledge proofs that keeps track of what&rsquo;s secret (and proves in Rocq that secrets never slip out), then compiles to Noir circuits so multi-party protocols can pirouette together without stepping on anyone&rsquo;s privacy.</li>
+                        <li><span class="project-name">Shadow Graphs</span> — Follow the money without ever seeing the money. In private cryptocurrencies nobody can see who paid whom, which is great for privacy and awkward when funds get stolen. Shadow Graphs lets a theft report chase the stolen funds hop by hop through the hidden transaction graph and freeze them wherever they land, while nobody (not even the helpers passing the report along) gets to see the whole graph.</li>
+                        <li><span class="project-name">Stateful zk-creds</span> <span class="wip-tag">working title</span> — Anonymous credentials with a memory. Building on zk-creds, credentials that can carry and update state, like a reputation or a usage limit, so you can prove &ldquo;I&rsquo;m in good standing&rdquo; without ever revealing who you are.</li>
+                        <li><span class="project-name">Ideal-Functionality Choreographies</span> <span class="wip-tag">working title</span> — Writing down what a multi-party protocol is <em>supposed</em> to do turns out to be sneakily hard: one innocent-looking spec can quietly let the adversary reorder, delay, or replay your messages. This project uses choreographies to make those specs precise, so the fine print says what we actually meant.</li>
+                    </ul>
+                        </div>
+                        <div class="gallery-col">
+                    <div class="tennis-gallery">
+                    <img src="../ten1.jpg" alt="Tennis photo 1">
+                    <img src="../ten4.jpg" alt="Tennis photo 2">
+                    <img src="../ten3.jpg" alt="Tennis photo 3">
+                </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="profile-photo">
+                    <img src="../pp.png" alt="Your Profile Photo">
+                </div> -->
+            </div>
+        </section>   
+
+        <section id="publications" class="section-padded">
+            <div class="container">
+                <h2>Publications</h2>
+                <div class="publication-list">
+                    <h3 class="publication-year">2025</h3>
+                    <article class="publication-item">
+                        <div class="publication-bar"></div> <div class="publication-image">
+                            <img src="../static/images/projects/new1.png" alt="Publication Icon">
+                        </div>
+                        <span class="venue-badge">TFPiE '25</span>
+                        <div class="publication-details">
+                            <!-- <h3><a href="" target="_blank">Design support for Multitape Turing Machines</a></h3> -->
+                            <h3><a href="https://arxiv.org/abs/2508.03638" target="_blank">Design Support for Multitape Turing Machines</a></h3>
+                            <p class="authors">Marco T. Morazán, <strong>Oliwia Kempinski</strong>, Andrés M. Garced</p>
+                            <p class="venue">TFPiE 2025: Symposium on Trends in Functional Programming in Education</p>
+                            <p class="date">Published: TBD</p>
+                        </div>
+                        <div class="pub-links"><a class="pub-btn" href="https://arxiv.org/abs/2508.03638" target="_blank">arXiv</a><a class="pub-btn" href="https://arxiv.org/pdf/2508.03638" target="_blank">PDF</a></div>
+                    </article>
+                    <h3 class="publication-year">2024</h3>
+                    <article class="publication-item">
+                        <div class="publication-bar"></div> <div class="publication-image">
+                            <img src="../static/images/projects/new2.png" alt="Publication Icon">
+                        </div>
+                        <span class="venue-badge">IFL '24</span>
+                        <div class="publication-details">
+                            <h3><a href="https://dl.acm.org/doi/10.1145/3723325.3723337" target="_blank">The Implementation of FSM Computation Graphs</a></h3>
+                            <p class="authors">Marco T. Morazán, <strong>Oliwia Kempinski</strong>, Andrés M. Garced</p>
+                            <p class="venue">IFL 2024: Proceedings of the 36th Symposium on Implementation and Application of Functional Languages</p>
+                            <p class="date">Published: 02 May 2025</p>
+                        </div>
+                        <div class="pub-links"><a class="pub-btn" href="https://dl.acm.org/doi/10.1145/3723325.3723337" target="_blank">ACM</a><a class="pub-btn" href="https://doi.org/10.1145/3723325.3723337" target="_blank">DOI</a></div>
+                    </article>
+                    <article class="publication-item">
+                        <div class="publication-bar"></div> <div class="publication-image">
+                            <img src="../static/images/projects/4.jpg" alt="Publication Icon">
+                        </div>
+                        <span class="venue-badge">SPLASH-E '24</span>
+                        <div class="publication-details">
+                            <h3><a href="https://dl.acm.org/doi/abs/10.1145/3689493.3689979" target="_blank">Visualizing Composed Turing Machines</a></h3>
+                            <p class="authors">Marco T. Morazán, Tijana Minić, <strong>Oliwia Kempinski</strong></p>
+                            <p class="venue">SPLASH-E 2024: Proceedings of the 2024 ACM SIGPLAN International Symposium on SPLASH-E</p>
+                            <p class="date">Published: 17 October 2024</p>
+                        </div>
+                        <div class="pub-links"><a class="pub-btn" href="https://dl.acm.org/doi/abs/10.1145/3689493.3689979" target="_blank">ACM</a><a class="pub-btn" href="https://doi.org/10.1145/3689493.3689979" target="_blank">DOI</a></div>
+                    </article>
+                    <article class="publication-item">
+                        <div class="publication-bar"></div> <div class="publication-image">
+                            <img src="../static/images/projects/3.jpg" alt="Publication Icon">
+                        </div>
+                        <span class="venue-badge">SPLASH-E '24</span>
+                        <div class="publication-details">
+                            <h3><a href="https://dl.acm.org/doi/abs/10.1145/3689493.3689978" target="_blank">Using Computation Graphs to Explain Nondeterminism to Students</a></h3>
+                            <p class="authors">Marco T. Morazán, <strong>Oliwia Kempinski</strong></p>
+                            <p class="venue">SPLASH-E 2024: Proceedings of the 2024 ACM SIGPLAN International Symposium on SPLASH-E</p>
+                            <p class="date">Published: 17 October 2024</p>
+                        </div>
+                        <div class="pub-links"><a class="pub-btn" href="https://dl.acm.org/doi/abs/10.1145/3689493.3689978" target="_blank">ACM</a><a class="pub-btn" href="https://doi.org/10.1145/3689493.3689978" target="_blank">DOI</a></div>
+                    </article>
+                    <h3 class="publication-year">2023</h3>
+                    <article class="publication-item">
+                        <div class="publication-bar"></div>
+                        <div class="publication-image">
+                            <img src="../static/images/projects/1.jpg" alt="Publication Icon">
+                        </div>
+                        <span class="venue-badge">Scheme '23</span>
+                        <div class="publication-details">
+                            <h3><a href="https://arxiv.org/abs/2310.08025" target="_blank">Visualizing Why Nondeterministic Finite-State Automata Reject</a></h3>
+                            <p class="authors"><strong>Oliwia Kempinski</strong>, Marco T. Morazán</p>
+                            <p class="venue">ICFP 2023: Scheme and Functional Programming Workshop 2023</p>
+                            <p class="date">Published: 12 October 2023</p>
+                        </div>
+                        <div class="pub-links"><a class="pub-btn" href="https://arxiv.org/abs/2310.08025" target="_blank">arXiv</a><a class="pub-btn" href="https://arxiv.org/pdf/2310.08025" target="_blank">PDF</a></div>
+                    </article>
+            </div>
+        </section>
+
+        <section id="cv" class="section-padded">
+            <div class="container">
+                <h2>Curriculum Vitae</h2>
+                <p>Download my <a href="../Kempinski Resume.pdf" target="_blank">CV</a> for more details on my academic and professional background.</p>
+                <!-- <p><a href="../Kempinski Resume.pdf" target="_blank" class="button">Download CV (PDF)</a></p> -->
+            </div>
+        </section>
+
+        <section id="contact" class="section-padded">
+            <div class="container">
+                <h2>Contact</h2>
+                <p>Feel free to reach out via email or connect with me on professional networks.</p>
+                <!-- <p>Email: <a href="mailto:okempins@umd.edu">okempins@umd.edu</a></p> -->
+                <ul class="social-links">
+                    <li><a href="mailto:okempins@umd.edu" aria-label="Email" title="okempins@umd.edu"><svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></a></li>
+                    <li><a href="https://scholar.google.com/citations?user=VydEGFAAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" title="Google Scholar"><svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M390.9 298.5c0 0 0 .1 .1 .1c9.2 19.4 14.4 41.1 14.4 64C405.3 445.1 338.5 512 256 512s-149.3-66.9-149.3-149.3c0-22.9 5.2-44.6 14.4-64h0c1.7-3.6 3.6-7.2 5.6-10.7c4.4-7.6 9.4-14.7 15-21.3c27.4-32.6 68.5-53.3 114.4-53.3c33.6 0 64.6 11.1 89.6 29.9c9.1 6.9 17.4 14.7 24.8 23.5c5.6 6.6 10.6 13.8 15 21.3c2 3.4 3.8 7 5.5 10.5zm26.4-18.8c-30.1-58.4-91-98.4-161.3-98.4s-131.2 40-161.3 98.4L0 202.7 256 0 512 202.7l-94.7 77.1z"/></svg></a></li>
+                    <li><a href="https://www.linkedin.com/in/oliwia-kempinski-2909421b2/" target="_blank" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a></li>
+                    <li><a href="https://github.com/oliwial23" target="_blank" aria-label="GitHub" title="GitHub"><svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a></li>
+                    </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Oliwia Kempinski.</p>
+        </div>
+    </footer>
+</body>
+</html>
